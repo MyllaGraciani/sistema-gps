@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:octagon_automation/database/sqflite/DAO/UsuarioDAO.dart';
+import 'package:octagon_automation/database/sqflite/DAO/usuario_dao.dart';
 import 'package:octagon_automation/domain/entities/usuario.model.dart';
 
 // ignore: must_be_immutable

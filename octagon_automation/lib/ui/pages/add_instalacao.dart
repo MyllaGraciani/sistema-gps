@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:octagon_automation/database/sqflite/DAO/InstalacaoDAO.dart';
-import 'package:octagon_automation/database/sqflite/DAO/UsuarioDAO.dart';
+import 'package:octagon_automation/database/sqflite/DAO/instalacao_dao.dart';
+import 'package:octagon_automation/database/sqflite/DAO/usuario_dao.dart';
 import 'package:octagon_automation/domain/entities/usuario.model.dart';
 
 // ignore: must_be_immutable
@@ -98,9 +98,9 @@ class AddInstalacaoPage extends StatelessWidget {
                       primary: Colors.white,
                       backgroundColor: Colors.blue[800],
                     ),
-                    onPressed: () async {
+                    onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        await instalacaoDAO.inserir(
+                        instalacaoDAO.inserir(
                           _tipoInstalacao.text,
                           _enderecoInstalacao.text,
                           int.parse(_idAdminInstalacao.text),

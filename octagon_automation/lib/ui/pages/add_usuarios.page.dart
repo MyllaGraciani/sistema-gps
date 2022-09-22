@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:octagon_automation/database/sqflite/DAO/UsuarioDAO.dart';
+import 'package:octagon_automation/database/sqflite/DAO/usuario_dao.dart';
 
-class AddUsuarioPage extends StatelessWidget {
-  AddUsuarioPage({Key? key}) : super(key: key);
+class AddUsuarioPage extends StatefulWidget {
+  const AddUsuarioPage({Key? key}) : super(key: key);
+
+  @override
+  State<AddUsuarioPage> createState() => _AddUsuarioPageState();
+}
+
+class _AddUsuarioPageState extends State<AddUsuarioPage> {
   final _formKey = GlobalKey<FormState>();
+
   UsuarioDAO usuarioDAO = UsuarioDAO();
+
   final _nomeUsuario = TextEditingController();
+
   final _cpfUsuario = TextEditingController();
+
   final _telefoneUsuario = TextEditingController();
+
   final _emailUsuario = TextEditingController();
+
   final _senhaUsuario = TextEditingController();
 
   @override
@@ -94,9 +106,9 @@ class AddUsuarioPage extends StatelessWidget {
                       primary: Colors.white,
                       backgroundColor: Colors.blue[800],
                     ),
-                    onPressed: () async {
+                    onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        await usuarioDAO.inserir(
+                        usuarioDAO.inserir(
                             _nomeUsuario.text,
                             _cpfUsuario.text,
                             _telefoneUsuario.text,
