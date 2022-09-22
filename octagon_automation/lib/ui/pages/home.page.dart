@@ -21,66 +21,98 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        automaticallyImplyLeading: false,
         title: const Text('Octagon Automation'),
       ),
       body: Center(
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  style: TextButton.styleFrom(
-                    primary: Colors.white,
-                    backgroundColor: Colors.blue[800],
+            Card(
+              margin: const EdgeInsets.all(10),
+              color: Colors.blue[100],
+              child: Column(
+                children: [
+                  const Icon(
+                    Icons.person_pin,
+                    size: 100,
+                    color: Colors.blue,
                   ),
-                  onPressed: () async {
-                    Navigator.pushNamed(context, '/add_usuario');
-                  },
-                  child: const Text("cadastrar usuário"),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    primary: Colors.white,
-                    backgroundColor: Colors.blue[800],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          primary: Colors.white,
+                          backgroundColor: Colors.blue,
+                        ),
+                        onPressed: () async {
+                          Navigator.pushNamed(context, '/add_usuario');
+                        },
+                        child: const Text("cadastrar usuário",
+                            style: TextStyle(fontSize: 16)),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          primary: Colors.white,
+                          backgroundColor: Colors.blue,
+                        ),
+                        onPressed: () async {
+                          Navigator.pushNamed(context, '/ver_usuarios');
+                        },
+                        child: const Text("ver usuários",
+                            style: TextStyle(fontSize: 16)),
+                      ),
+                    ],
                   ),
-                  onPressed: () async {
-                    Navigator.pushNamed(context, '/ver_usuarios');
-                  },
-                  child: const Text("ver usuários"),
-                ),
-              ],
+                ],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  style: TextButton.styleFrom(
-                    primary: Colors.white,
-                    backgroundColor: Colors.blue[800],
+            Card(
+              margin: const EdgeInsets.all(10),
+              color: Colors.black12,
+              child: Column(
+                children: [
+                  const Icon(
+                    Icons.home_work,
+                    size: 100,
+                    color: Colors.black54,
                   ),
-                  onPressed: () async {
-                    Navigator.pushNamed(context, '/add_instalacao');
-                  },
-                  child: const Text("cadastrar instalação"),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                TextButton(
-                  style: TextButton.styleFrom(
-                    primary: Colors.white,
-                    backgroundColor: Colors.blue[800],
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          primary: Colors.white,
+                          backgroundColor: Colors.black54,
+                        ),
+                        onPressed: () async {
+                          Navigator.pushNamed(context, '/add_instalacao');
+                        },
+                        child: const Text("cadastrar instalação",
+                            style: TextStyle(fontSize: 16)),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      TextButton(
+                        style: TextButton.styleFrom(
+                          primary: Colors.white,
+                          backgroundColor: Colors.black54,
+                        ),
+                        onPressed: () async {
+                          Navigator.pushNamed(context, '/ver_instalacoes');
+                        },
+                        child: const Text("ver instalações",
+                            style: TextStyle(fontSize: 16)),
+                      ),
+                    ],
                   ),
-                  onPressed: () async {
-                    Navigator.pushNamed(context, '/ver_instalacoes');
-                  },
-                  child: const Text("ver instalações"),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

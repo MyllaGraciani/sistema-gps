@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:octagon_automation/ui/pages/add_instalacao.dart';
 import 'package:octagon_automation/ui/pages/add_usuarios.page.dart';
 import 'package:octagon_automation/ui/pages/home.page.dart';
+import 'package:octagon_automation/ui/pages/ver_instalacoes.dart';
 import 'package:octagon_automation/ui/pages/ver_usuarios.page.dart';
 
 class MyApp extends StatefulWidget {
@@ -24,7 +25,7 @@ class _MyAppState extends State<MyApp> {
         '/add_usuario': (context) => AddUsuarioPage(),
         '/add_instalacao': (context) => AddInstalacaoPage(),
         '/ver_usuarios': (context) => VerUsuariosPage(),
-        '/ver_instalacoes': (context) => AddInstalacaoPage(),
+        '/ver_instalacoes': (context) => VerInstalacoesPage(),
       },
     );
   }

@@ -30,24 +30,48 @@ class AddUsuarioPage extends StatelessWidget {
                     decoration: const InputDecoration(
                       labelText: 'Nome',
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor, insira um nome';
+                      }
+                      return null;
+                    },
                   ),
                   TextFormField(
                     controller: _cpfUsuario,
                     decoration: const InputDecoration(
                       labelText: 'CPF',
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor, insira um CPF';
+                      }
+                      return null;
+                    },
                   ),
                   TextFormField(
                     controller: _telefoneUsuario,
                     decoration: const InputDecoration(
                       labelText: 'Telefone',
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor, insira um telefone';
+                      }
+                      return null;
+                    },
                   ),
                   TextFormField(
                     controller: _emailUsuario,
                     decoration: const InputDecoration(
                       labelText: 'Email',
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor, insira um email';
+                      }
+                      return null;
+                    },
                   ),
                   TextFormField(
                     controller: _senhaUsuario,
@@ -55,6 +79,12 @@ class AddUsuarioPage extends StatelessWidget {
                     decoration: const InputDecoration(
                       labelText: 'Senha',
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor, insira uma senha';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(
                     height: 30,
