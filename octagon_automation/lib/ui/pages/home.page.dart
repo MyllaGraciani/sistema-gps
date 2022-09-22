@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:octagon_automation/database/sqflite/DAO/UsuarioDAO.dart';
 import 'package:octagon_automation/database/sqflite/conexao.dart';
-import 'package:octagon_automation/domain/entities/usuario.model.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,10 +10,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final dbConnect = Connection.instance;
-
-  _connect() async {
-    await dbConnect.get();
-  }
 
   @override
   Widget build(BuildContext context) {

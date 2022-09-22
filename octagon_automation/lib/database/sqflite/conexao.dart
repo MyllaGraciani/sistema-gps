@@ -1,4 +1,5 @@
 import 'package:octagon_automation/database/sqflite/create_table.script.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
