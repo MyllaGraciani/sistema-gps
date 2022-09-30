@@ -22,8 +22,12 @@ class _MyAppState extends State<MyApp> {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
-        '/add_usuario': (context) => const AddUsuarioPage(),
-        '/add_instalacao': (context) => AddInstalacaoPage(),
+        '/add_usuario': (context) => const AddUsuarioPage(
+              isEditingUser: 0,
+            ),
+        '/add_instalacao': (context) => const AddInstalacaoPage(
+              isEditingInstalacao: 0,
+            ),
         '/ver_usuarios': (context) => VerUsuariosPage(),
         '/ver_instalacoes': (context) => VerInstalacoesPage(),
       },

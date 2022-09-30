@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:octagon_automation/database/sqflite/DAO/usuario_dao.dart';
 
 class AddUsuarioPage extends StatefulWidget {
-  const AddUsuarioPage({Key? key}) : super(key: key);
+  final int isEditingUser;
+  const AddUsuarioPage({Key? key, required this.isEditingUser})
+      : super(key: key);
 
   @override
   State<AddUsuarioPage> createState() => _AddUsuarioPageState();
@@ -22,6 +24,24 @@ class _AddUsuarioPageState extends State<AddUsuarioPage> {
   final _emailUsuario = TextEditingController();
 
   final _senhaUsuario = TextEditingController();
+
+  void isEditing() {
+    if (widget.isEditingUser != 0) {
+      usuarioDAO.buscarUsuarioPorId(widget.isEditingUser).then((value) {
+        _nomeUsuario.text = value.nome;
+        _cpfUsuario.text = value.cpf;
+        _telefoneUsuario.text = value.telefone;
+        _emailUsuario.text = value.email;
+        _senhaUsuario.text = value.senha;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    isEditing();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,16 +128,34 @@ class _AddUsuarioPageState extends State<AddUsuarioPage> {
                     ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        usuarioDAO.inserir(
-                            _nomeUsuario.text,
-                            _cpfUsuario.text,
-                            _telefoneUsuario.text,
-                            _emailUsuario.text,
-                            _senhaUsuario.text);
-                        Navigator.pushReplacementNamed(context, '/');
+                        if (widget.isEditingUser != 0) {
+                          Map<String, dynamic> usuario = {
+                            'id': widget.isEditingUser,
+                            'nome': _nomeUsuario.text,
+                            'cpf': _cpfUsuario.text,
+                            'telefone': _telefoneUsuario.text,
+                            'email': _emailUsuario.text,
+                            'senha': _senhaUsuario.text,
+                          };
+                          usuarioDAO.atualizar(usuario);
+
+                          _showDialog(
+                              context, 'Usuário atualizado com sucesso!');
+                        } else {
+                          usuarioDAO.inserir(
+                              _nomeUsuario.text,
+                              _cpfUsuario.text,
+                              _telefoneUsuario.text,
+                              _emailUsuario.text,
+                              _senhaUsuario.text);
+
+                          _showDialog(
+                              context, 'Usuário cadastrado com sucesso!');
+                        }
                       }
                     },
-                    child: const Text("CADASTRAR"),
+                    child: Text(
+                        widget.isEditingUser == 0 ? 'CADASTRAR' : 'EDITAR'),
                   ),
                 ],
               ),
@@ -125,6 +163,29 @@ class _AddUsuarioPageState extends State<AddUsuarioPage> {
           ),
         ),
       ),
+    );
+  }
+
+  void _showDialog(BuildContext context, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Icon(
+            Icons.check_circle,
+            color: Colors.green,
+          ),
+          content: Text(message),
+          actions: [
+            TextButton(
+              child: const Text("Ok"),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/');
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

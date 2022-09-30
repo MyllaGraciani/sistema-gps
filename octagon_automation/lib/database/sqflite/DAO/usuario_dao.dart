@@ -26,6 +26,22 @@ class UsuarioDAO {
     return lista;
   }
 
+  buscarUsuarioPorId(int id) async {
+    _db = (await Connection.instance.get())!;
+
+    List<Map<String, dynamic>> resultado =
+        await _db.query('usuarios', where: 'id = ?', whereArgs: [id]);
+
+    return UsuarioModel(
+      resultado[0]['id'],
+      resultado[0]['nome'],
+      resultado[0]['cpf'],
+      resultado[0]['telefone'],
+      resultado[0]['email'],
+      resultado[0]['senha'],
+    );
+  }
+
   inserir(
     String nome,
     String cpf,
@@ -49,7 +65,7 @@ class UsuarioDAO {
   atualizar(Map<String, dynamic> row) async {
     _db = (await Connection.instance.get())!;
 
-    await _db.update('usuarios', row);
+    await _db.update('usuarios', row, where: 'id = ?', whereArgs: [row['id']]);
   }
 
   remover(int id) async {
